@@ -1,10 +1,10 @@
-Yaml ^
+Yaml^
  name: Rc-01 Android APK Build
 on: 
-workflow _dispatch : 
-jobs:
-build:
-name: Build Android APK 
+ workflow _dispatch : 
+ jobs:
+   build:
+      name: Build Android APK 
 runs-on: ubuntu-latest
 steps:
 -name: Checkout repository 
