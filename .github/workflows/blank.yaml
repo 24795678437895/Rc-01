@@ -1,4 +1,4 @@
-Yaml^
+YAML
  name: Rc-01 Android APK Build
 on: 
  workflow _dispatch : 
@@ -7,9 +7,11 @@ on:
       name: Build Android APK 
 runs-on: ubuntu-latest
 steps:
--name: Checkout repository 
-uses: actions/checkout@v4 -name:Build APK
-run: echo "Rc-01 build started"
+ -name: Checkout
+ repository
+    uses: 
+    actions/checkout@v4 -name:Build APK
+ run: echo "Rc-01 build started"
 
 
 
