@@ -1,18 +1,48 @@
-YAML
- name: Rc-01 Android APK Build
-on: 
- workflow _dispatch : 
- jobs:
-   build:
-      name: Build Android APK 
-runs-on: ubuntu-latest
-steps:
- -name: Checkout
- repository
-    uses: 
-    actions/checkout@v4 -name:Build APK
- run: echo "Rc-01 build started"
 
+
+name: Rc-01 Android APK Build
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build Rc-01 APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout RC-01
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Check Unity project
+        run: |
+          test -d Assets
+          test -d Packages
+          test -d ProjectSettings
+          echo "Unity project found"
+
+      - name: Build Android APK
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          targetPlatform: Android
+          androidExportType: androidPackage
+          buildsPath: build
+          buildName: Rc-01
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Rc-01-Android-APK
+          path: build/Android
+          if-no-files-found: error
+          
 
 
       
