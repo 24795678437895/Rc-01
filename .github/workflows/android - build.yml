@@ -41,7 +41,7 @@ jobs:
           androidExportType: androidPackage
           buildsPath: build
           buildName: Rc-01
-
+          versioning: None
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
